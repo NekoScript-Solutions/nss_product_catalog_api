@@ -1,0 +1,15 @@
+{
+  "root": true,
+  "env": {
+    "es2022": true,
+    "node": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "impliedStrict": true
+    }
+  },
+  "extends": "airbnb-base",
+  "rules": {}
+}
