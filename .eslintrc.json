@@ -1,13 +1,12 @@
 {
   "root": true,
   "env": {
-    "es2022": true,
-    "node": true
+    "node": true,
+    "es2022": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest",
     "ecmaFeatures": {
-        "impliedStrict": true
+      "impliedStrict": true
     }
   },
   "extends": "airbnb-base",
