@@ -1,3 +1,5 @@
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
@@ -20,6 +22,7 @@ fs
   .forEach((file) => {
     const filePath = path.join(__dirname, file);
     const model = require(filePath)(sequelize, Sequelize.DataTypes);
+
     db[model.name] = model;
   });
 

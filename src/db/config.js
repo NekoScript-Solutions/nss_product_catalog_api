@@ -1,3 +1,5 @@
+'use strict';
+
 require('dotenv').config();
 
 module.exports = {
@@ -15,5 +17,6 @@ module.exports = {
       rejectUnauthorized: false,
     },
     seederStorage: 'sequelize',
+    logging: false,
   },
 };
