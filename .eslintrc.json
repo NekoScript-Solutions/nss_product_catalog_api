@@ -9,6 +9,6 @@
       "impliedStrict": true
     }
   },
-  "extends": "airbnb-base",
+  "extends": "@mate-academy/eslint-config",
   "rules": {}
 }
