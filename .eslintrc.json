@@ -5,7 +5,7 @@
     "node": true
   },
   "parserOptions": {
-    "sourceType": "module",
+    "ecmaVersion": "latest",
     "ecmaFeatures": {
         "impliedStrict": true
     }
