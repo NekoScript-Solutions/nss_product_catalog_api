@@ -9,20 +9,24 @@ module.exports = {
   },
   testing: {
     url: process.env.DB_URL_TEST,
-    dialect: 'postgres',
     ssl: true,
+    dialect: 'postgres',
     dialectOptions: {
-      ssl: true,
-      rejectUnauthorized: false,
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
     },
   },
   production: {
     url: process.env.DB_URL,
-    dialect: 'postgres',
     ssl: true,
+    dialect: 'postgres',
     dialectOptions: {
-      ssl: true,
-      rejectUnauthorized: false,
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
     },
     seederStorage: 'sequelize',
     logging: false,
