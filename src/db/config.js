@@ -6,7 +6,6 @@ module.exports = {
   development: {
     url: process.env.DB_URL_DEV,
     dialect: 'postgres',
-    seederStorage: 'sequelize',
   },
   testing: {
     url: process.env.DB_URL_TEST,
@@ -16,7 +15,6 @@ module.exports = {
       ssl: true,
       rejectUnauthorized: false,
     },
-    seederStorage: 'sequelize',
   },
   production: {
     url: process.env.DB_URL,

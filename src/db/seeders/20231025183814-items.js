@@ -4,7 +4,7 @@ const phones = require('../../data/phones.json');
 const tablets = require('../../data/tablets.json');
 const accessories = require('../../data/accessories.json');
 
-const details = phones.concat(tablets, accessories)
+const items = phones.concat(tablets, accessories)
   .map((product) => {
     product.description = JSON.stringify(product.description);
 
@@ -14,10 +14,10 @@ const details = phones.concat(tablets, accessories)
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('details', details);
+    await queryInterface.bulkInsert('items', items);
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('details', null);
+    await queryInterface.bulkDelete('items', null);
   },
 };

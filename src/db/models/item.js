@@ -3,13 +3,12 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Details extends Model {
+  class Item extends Model {
     static associate(models) {
-      models.Details.BelongsTo(models.Product);
     }
   }
 
-  Details.init({
+  Item.init({
     id: {
       type: DataTypes.STRING,
       primaryKey: true,
@@ -33,10 +32,10 @@ module.exports = (sequelize, DataTypes) => {
     cell: DataTypes.ARRAY(DataTypes.STRING),
   }, {
     sequelize,
-    modelName: 'Details',
-    tableName: 'details',
+    modelName: 'Item',
+    tableName: 'items',
     timestamps: false,
   });
 
-  return Details;
+  return Item;
 };
