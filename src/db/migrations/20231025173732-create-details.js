@@ -3,22 +3,14 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('products', {
+    await queryInterface.createTable('details', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      category: {
-        allowNull: false,
         type: Sequelize.STRING,
       },
-      phoneId: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      itemId: {
+      namespaceId: {
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -26,23 +18,47 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      fullPrice: {
+      capacityAvailable: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      price: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      screen: {
-        allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       capacity: {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      priceRegular: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      priceDiscount: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      colorsAvailable: {
+        allowNull: false,
+        type: Sequelize.ARRAY(Sequelize.STRING),
+      },
       color: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      images: {
+        allowNull: false,
+        type: Sequelize.ARRAY(Sequelize.STRING),
+      },
+      description: {
+        allowNull: false,
+        type: Sequelize.JSON,
+      },
+      screen: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      resolution: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      processor: {
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -50,17 +66,22 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      year: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      image: {
-        allowNull: false,
+      camera: {
+        allowNull: true,
         type: Sequelize.STRING,
+      },
+      zoom: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+      cell: {
+        allowNull: false,
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
     });
   },
+
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('products');
+    await queryInterface.dropTable('details');
   },
 };

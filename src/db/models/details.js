@@ -5,7 +5,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Details extends Model {
     static associate(models) {
-      // define association here
+      models.Details.BelongsTo(models.Product);
     }
   }
 

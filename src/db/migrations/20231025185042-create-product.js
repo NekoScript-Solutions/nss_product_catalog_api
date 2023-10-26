@@ -3,62 +3,46 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('details', {
+    await queryInterface.createTable('products', {
       id: {
         allowNull: false,
-        autoIncrement: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
-      namespaceId: {
+      category: {
         allowNull: false,
         type: Sequelize.STRING,
+      },
+      itemId: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        references: {
+          model: 'details',
+          key: 'id',
+        },
       },
       name: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      capacityAvailable: {
-        allowNull: false,
-        type: Sequelize.ARRAY(Sequelize.STRING),
-      },
-      capacity: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      priceRegular: {
+      fullPrice: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      priceDiscount: {
+      price: {
         allowNull: false,
         type: Sequelize.INTEGER,
-      },
-      colorsAvailable: {
-        allowNull: false,
-        type: Sequelize.ARRAY(Sequelize.STRING),
-      },
-      color: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      images: {
-        allowNull: false,
-        type: Sequelize.ARRAY(Sequelize.STRING),
-      },
-      description: {
-        allowNull: false,
-        type: Sequelize.JSON,
       },
       screen: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      resolution: {
+      capacity: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      processor: {
+      color: {
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -66,22 +50,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      camera: {
+      year: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      image: {
         allowNull: false,
         type: Sequelize.STRING,
-      },
-      zoom: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      cell: {
-        allowNull: false,
-        type: Sequelize.ARRAY(Sequelize.STRING),
       },
     });
   },
-
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('details');
+    await queryInterface.dropTable('products');
   },
 };

@@ -5,7 +5,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
-      // define association here
+      models.Product.HasOne(models.Details);
     }
   }
 
@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     category: DataTypes.STRING,
-    phoneId: DataTypes.STRING,
     itemId: DataTypes.STRING,
     name: DataTypes.STRING,
     fullPrice: DataTypes.INTEGER,
