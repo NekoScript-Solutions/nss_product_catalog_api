@@ -13,15 +13,10 @@ const productIdRouteParam = (req, res, next, id) => {
 };
 
 const queryParams = (req, res, next) => {
-  const {
-    offset,
-    limit,
-    type,
-  } = req.query;
+  const { offset, limit } = req.query;
 
-  if ((offset && (Number.isNaN(+offset) || +offset <= 0))
-   || (limit && (Number.isNaN(+limit) || +limit <= 0))
-   || (type && typeof type !== 'string')) {
+  if ((offset && (Number.isNaN(+offset) || +offset < 0))
+   || (limit && (Number.isNaN(+limit) || +limit <= 0))) {
     res.sendStatus(400);
 
     return;

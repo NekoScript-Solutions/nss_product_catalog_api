@@ -2,13 +2,22 @@
 
 const { Product, Item } = require('../../db/models');
 
-const getAll = async ({ offset, limit, type }) => {
+const sortOptions = {
+  age: ['year', 'DESC'],
+  title: ['name', 'ASC'],
+  price: ['price', 'ASC'],
+};
+
+const getAll = async ({ offset, limit, type, sort }) => {
   const query = { offset, limit };
+  const order = sortOptions[sort];
 
   if (type) {
-    query.where = {
-      category: type,
-    };
+    query.where = { category: type };
+  }
+
+  if (order) {
+    query.order = [order];
   }
 
   const products = await Product.findAndCountAll(query);
@@ -21,16 +30,14 @@ const getAll = async ({ offset, limit, type }) => {
 
 const get = async (productId) => {
   const product = await Product.findByPk(productId);
-  const item = await product?.getItem();
 
-  if (!item) {
+  if (!product) {
     return null;
   }
 
+  const item = await product.getItem();
   const variants = await Item.findAll({
-    where: {
-      namespaceId: item.namespaceId,
-    },
+    where: { namespaceId: item.namespaceId },
   });
 
   return { product, variants };

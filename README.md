@@ -71,13 +71,13 @@
     #### Data shape:
     ```
     {
-      count: number, // total number of fetched products
+      count: number, // total number of products which satisfy the query
       products: Product[]
     }
     ```
 
     #### Query params
-    Can be used separately or in any combination
+    Can be used separately or in any combination: `?offset=4&limit=4&type=phones&sort=age`
 
     Skip first `number` of products
     ```
@@ -92,6 +92,11 @@
     Take only products of `type`
     ```
     ?type=phones|tablets|accessories
+    ```
+
+    Sort products by `age` (newest firts), by `price` (cheapest firs) or by `title` (alphabetically, a->z)
+    ```
+    ?sort=age|price|title
     ```
 
 
