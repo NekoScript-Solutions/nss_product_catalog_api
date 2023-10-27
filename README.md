@@ -63,10 +63,10 @@
 
 1. **All Products**
 
+    Get all products in JSON format
     ```
     /products
     ```
-    Get all products in JSON format
 
     #### Data shape:
     ```
@@ -79,28 +79,28 @@
     #### Query params
     Can be used separately or in any combination
 
+    Skip first `number` of products
     ```
     ?offset=number
     ```
-    Skip first `number` of products
 
+    Take only `number` of products
     ```
     ?limit=number
     ```
-    Take only `number` of products
 
-      ```
+    Take only products of `type`
+    ```
     ?type=phones|tablets|accessories
     ```
-    Take only products of `type`
 
 
 2. **Single product**
 
+    Get product with specified `id` in JSON format
     ```
     /products/:id
     ```
-    Get product with specified `id` in JSON format
 
     #### Data shape:
     ```
