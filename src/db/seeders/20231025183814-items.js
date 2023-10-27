@@ -1,14 +1,15 @@
 'use strict';
 
-const phones = require('../../data/phones.json');
-const tablets = require('../../data/tablets.json');
-const accessories = require('../../data/accessories.json');
+const phones = require('../../../data/phones.json');
+const tablets = require('../../../data/tablets.json');
+const accessories = require('../../../data/accessories.json');
 
-const items = phones.concat(tablets, accessories)
-  .map((product) => {
-    product.description = JSON.stringify(product.description);
+const items = phones
+  .concat(tablets, accessories)
+  .map((item) => {
+    item.description = JSON.stringify(item.description);
 
-    return product;
+    return item;
   });
 
 /** @type {import('sequelize-cli').Migration} */

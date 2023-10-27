@@ -68,7 +68,7 @@
     /products
     ```
 
-    #### Data shape:
+    #### Response data:
     ```
     {
       count: number, // total number of products which satisfy the query
@@ -107,11 +107,11 @@
     /products/:id
     ```
 
-    #### Data shape:
+    #### Response data:
     ```
     {
       product: Product,
-      variants: Item[] // all existing variants of a product
+      variants: Item[] // all existing variants of the product
     }
     ```
 
@@ -123,3 +123,5 @@ Append image path to the base url to get the image
 ```
 https://nss-product-catalog-api.onrender.com/img/phones/apple-iphone-11-pro-max/spacegray/00.webp
 ```
+
+![The San Juan Mountains are beautiful!](https://nss-product-catalog-api.onrender.com/img/phones/apple-iphone-11-pro-max/spacegray/00.webp)

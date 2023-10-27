@@ -1,17 +1,5 @@
 'use strict';
 
-const productIdRouteParam = (req, res, next, id) => {
-  const productId = parseInt(id);
-
-  if (Number.isNaN(productId)) {
-    res.sendStatus(400);
-
-    return;
-  }
-
-  next();
-};
-
 const queryParams = (req, res, next) => {
   const { offset, limit } = req.query;
 
@@ -25,7 +13,19 @@ const queryParams = (req, res, next) => {
   next();
 };
 
+const productIdRouteParam = (_, res, next, value) => {
+  const productId = parseInt(value);
+
+  if (Number.isNaN(productId)) {
+    res.sendStatus(400);
+
+    return;
+  }
+
+  next();
+};
+
 module.exports = {
-  productIdRouteParam,
   queryParams,
+  productIdRouteParam,
 };
