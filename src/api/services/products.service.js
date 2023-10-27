@@ -1,22 +1,19 @@
 'use strict';
 
-const { Op } = require('sequelize');
-const { Product } = require('../../db/models');
+const { Product, Item } = require('../../db/models');
 
 const getAll = async ({ offset, limit, type }) => {
   const query = { offset, limit };
 
   if (type) {
     query.where = {
-      category: {
-        [Op.eq]: type,
-      },
+      category: type,
     };
   }
 
   const products = await Product.findAndCountAll(query);
 
-  products.data = products.rows;
+  products.products = products.rows;
   delete products.rows;
 
   return products;
@@ -24,8 +21,19 @@ const getAll = async ({ offset, limit, type }) => {
 
 const get = async (productId) => {
   const product = await Product.findByPk(productId);
+  const item = await product?.getItem();
 
-  return product?.getItem();
+  if (!item) {
+    return null;
+  }
+
+  const variants = await Item.findAll({
+    where: {
+      namespaceId: item.namespaceId,
+    },
+  });
+
+  return { product, variants };
 };
 
 module.exports = {

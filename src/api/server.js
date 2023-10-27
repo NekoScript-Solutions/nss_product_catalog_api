@@ -17,7 +17,7 @@ function server() {
     index: false,
     redirect: false,
     immutable: true,
-    maxAge: '7d',
+    maxAge: '14d',
   }));
 
   app.all('*', (_, res) => {
