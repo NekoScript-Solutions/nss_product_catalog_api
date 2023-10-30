@@ -13,10 +13,10 @@ const queryParams = (req, res, next) => {
   next();
 };
 
-const productIdRouteParam = (_, res, next, value) => {
-  const productId = parseInt(value);
+const idRouteParam = (_, res, next, value) => {
+  const id = +value;
 
-  if (Number.isNaN(productId)) {
+  if (Number.isNaN(id)) {
     res.sendStatus(400);
 
     return;
@@ -27,5 +27,5 @@ const productIdRouteParam = (_, res, next, value) => {
 
 module.exports = {
   queryParams,
-  productIdRouteParam,
+  idRouteParam,
 };

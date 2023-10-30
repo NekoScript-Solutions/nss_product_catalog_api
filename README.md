@@ -63,7 +63,7 @@
 
 1. **All Products**
 
-    Get all products in JSON format
+    Get all products:
     ```
     /products
     ```
@@ -79,22 +79,22 @@
     #### Query params
     Can be used separately or in any combination: `?offset=4&limit=4&type=phones&sort=age`
 
-    Skip first `number` of products
+    Skip first `number` of products:
     ```
     ?offset=number
     ```
 
-    Take only `number` of products
+    Take first `number` of products:
     ```
     ?limit=number
     ```
 
-    Take only products of `type`
+    Take only products of `type`:
     ```
     ?type=phones|tablets|accessories
     ```
 
-    Sort products by `age` (newest firts), by `price` (cheapest firs) or by `title` (alphabetically, a->z)
+    Sort products by `age` (newest first), by `price` (cheapest first) or by `title` (alphabetically, a->z):
     ```
     ?sort=age|price|title
     ```
@@ -102,7 +102,7 @@
 
 2. **Single product**
 
-    Get product with specified `id` in JSON format
+    Get product with specified `id`:
     ```
     /products/:id
     ```
@@ -115,10 +115,46 @@
     }
     ```
 
+3. **Recommended Products**
+
+    Get recommended products:
+    ```
+    /products/:id/recommended
+    ```
+
+    #### Response data:
+    ```
+    Product[]
+    ```
+
+4. **New Products**
+
+    Get new products:
+    ```
+    /products/new
+    ```
+
+    #### Response data:
+    ```
+    Product[]
+    ```
+
+5. **Hot Prices**
+
+    Get products with biggest discounts:
+    ```
+    /products/discount
+    ```
+
+    #### Response data:
+    ```
+    Product[]
+    ```
+
 
 ### Product Images
 
-Append image path to the base url to get the image
+Append image path to the base url to get the image:
 
 ```
 https://nss-product-catalog-api.onrender.com/img/phones/apple-iphone-11-pro-max/spacegray/00.webp

@@ -1,6 +1,6 @@
 'use strict';
 
-const { Product, Item } = require('../../db/models');
+const { Product, Item, sequelize } = require('../../db/models');
 
 const sortOptions = {
   age: ['year', 'DESC'],
@@ -28,8 +28,8 @@ const getAll = async ({ offset, limit, type, sort }) => {
   return products;
 };
 
-const get = async (productId) => {
-  const product = await Product.findByPk(productId);
+const get = async (id) => {
+  const product = await Product.findByPk(id);
 
   if (!product) {
     return null;
@@ -43,7 +43,35 @@ const get = async (productId) => {
   return { product, variants };
 };
 
+const getBrandNew = () => {
+  return Product.findAll({
+    limit: 10,
+    order: [
+      ['year', 'DESC'],
+    ],
+  });
+};
+
+const getHotPrices = () => {
+  return Product.findAll({
+    limit: 10,
+    order: [
+      [sequelize.literal('"fullPrice" - "price"'), 'DESC'],
+    ],
+  });
+};
+
+const getRecommended = () => {
+  return Product.findAll({
+    limit: 10,
+    order: sequelize.random(),
+  });
+};
+
 module.exports = {
   getAll,
   get,
+  getBrandNew,
+  getHotPrices,
+  getRecommended,
 };
