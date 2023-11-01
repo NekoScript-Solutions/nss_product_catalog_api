@@ -102,12 +102,29 @@
 
 2. **Single product**
 
-    Get product with specified `id`:
+    Get product with specified `id` (ProductId or ItemId):
     ```
     /products/:id
     ```
 
     #### Response data:
+    If `id` is ProductId:
+    ```
+    Product
+    ```
+
+    If `id` is ItemId:
+    ```
+    Item
+    ```
+
+    #### Fallback to old version:
+    Get product with specified `id` (ProductId):
+    ```
+    /products/:id?variants=true
+    ```
+
+    Response data:
     ```
     {
       product: Product,
