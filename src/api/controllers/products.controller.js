@@ -9,7 +9,10 @@ const getAll = async (req, res) => {
 };
 
 const get = async (req, res) => {
-  const product = await productsService.get(req.params.id);
+  const { variants } = req.query;
+  const { id } = req.params;
+
+  const product = await productsService.get(id, variants);
 
   if (!product) {
     res.sendStatus(404);
@@ -20,19 +23,19 @@ const get = async (req, res) => {
   res.json(product);
 };
 
-const getBrandNew = async (req, res) => {
+const getBrandNew = async (_, res) => {
   const products = await productsService.getBrandNew();
 
   res.json(products);
 };
 
-const getHotPrices = async (req, res) => {
+const getHotPrices = async (_, res) => {
   const products = await productsService.getHotPrices();
 
   res.json(products);
 };
 
-const getRecommended = async (req, res) => {
+const getRecommended = async (_, res) => {
   const products = await productsService.getRecommended();
 
   res.json(products);

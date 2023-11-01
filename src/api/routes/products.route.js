@@ -3,12 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const productsController = require('./../controllers/products.controller');
-const {
-  queryParams,
-  idRouteParam,
-} = require('../middleware/products.middleware');
-
-router.param('id', idRouteParam);
+const { queryParams } = require('../middleware/products.middleware');
 
 router.get('/', queryParams, productsController.getAll);
 router.get('/new', productsController.getBrandNew);

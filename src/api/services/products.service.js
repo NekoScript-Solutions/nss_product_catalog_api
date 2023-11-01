@@ -28,7 +28,19 @@ const getAll = async ({ offset, limit, type, sort }) => {
   return products;
 };
 
-const get = async (id) => {
+const get = async (id, variants) => {
+  if (!Number.isNaN(+id)) {
+    if (variants) {
+      return getProductWithVariants(id);
+    }
+
+    return Product.findByPk(id);
+  }
+
+  return Item.findByPk(id);
+};
+
+const getProductWithVariants = async (id) => {
   const product = await Product.findByPk(id);
 
   if (!product) {
