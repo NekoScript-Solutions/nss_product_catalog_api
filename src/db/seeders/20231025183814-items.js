@@ -36,7 +36,9 @@ const items = phones
   .map((item) => {
     item.description = JSON.stringify(item.description);
 
-    item.colorsAvailable = item.colorsAvailable.map(c => normalize(c));
+    item.colorsAvailable = item.colorsAvailable
+      .map(c => normalize(c))
+      .sort();
 
     if (!colors.includes(item.color)) {
       const id = item.id;
