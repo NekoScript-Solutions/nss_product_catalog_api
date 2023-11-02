@@ -36,12 +36,13 @@ const items = phones
   .map((item) => {
     item.description = JSON.stringify(item.description);
 
+    item.colorsAvailable = item.colorsAvailable.map(c => normalize(c));
+
     if (!colors.includes(item.color)) {
       const id = item.id;
       const idx = id.lastIndexOf('-');
 
       item.color = normalize(item.color);
-      item.colorsAvailable = item.colorsAvailable.map(c => normalize(c));
       item.id = id.substring(0, idx) + id.substring(idx + 1);
     }
 
