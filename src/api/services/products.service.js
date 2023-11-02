@@ -28,31 +28,48 @@ const getAll = async ({ offset, limit, type, sort }) => {
   return products;
 };
 
-const get = async (id, variants) => {
+const get = async (id, withVariants) => {
   if (!Number.isNaN(+id)) {
-    if (variants) {
-      return getProductWithVariants(id);
+    const product = await Product.findByPk(id);
+
+    if (!product) {
+      return null;
     }
 
-    return Product.findByPk(id);
+    if (withVariants) {
+      const item = await product.getItem();
+
+      const variants = await Item.findAll({
+        where: { namespaceId: item.namespaceId },
+      });
+
+      return { product, item, variants };
+    }
+
+    return product;
   }
 
-  return Item.findByPk(id);
-};
+  const item = await Item.findByPk(id);
 
-const getProductWithVariants = async (id) => {
-  const product = await Product.findByPk(id);
-
-  if (!product) {
+  if (!item) {
     return null;
   }
 
-  const item = await product.getItem();
-  const variants = await Item.findAll({
-    where: { namespaceId: item.namespaceId },
-  });
+  if (withVariants) {
+    const product = await Product.findOne({
+      where: {
+        itemId: item.id,
+      },
+    });
 
-  return { product, variants };
+    const variants = await Item.findAll({
+      where: { namespaceId: item.namespaceId },
+    });
+
+    return { product, item, variants };
+  }
+
+  return item;
 };
 
 const getBrandNew = () => {

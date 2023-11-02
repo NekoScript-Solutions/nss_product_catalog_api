@@ -118,8 +118,8 @@
     Item
     ```
 
-    #### Fallback to old version:
-    Get product with specified `id` (ProductId):
+    #### With variants:
+    Get product with specified `id` (ProductId or ItemId) and all its variants:
     ```
     /products/:id?variants=true
     ```
@@ -128,6 +128,7 @@
     ```
     {
       product: Product,
+      item: Item,
       variants: Item[] // all existing variants of the product
     }
     ```
