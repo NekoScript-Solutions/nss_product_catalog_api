@@ -3,9 +3,9 @@
 const { Product, Item, sequelize } = require('../../db/models');
 
 const sortOptions = {
-  age: ['year', 'DESC'],
-  title: ['name', 'ASC'],
-  price: ['price', 'ASC'],
+  age: [['year', 'DESC'], ['id', 'ASC']],
+  title: [['name', 'ASC'], ['id', 'ASC']],
+  price: [['price', 'ASC'], ['id', 'ASC']],
 };
 
 const getAll = async ({ offset, limit, type, sort }) => {
@@ -17,7 +17,7 @@ const getAll = async ({ offset, limit, type, sort }) => {
   }
 
   if (order) {
-    query.order = [order];
+    query.order = order;
   }
 
   const products = await Product.findAndCountAll(query);
@@ -60,6 +60,7 @@ const getBrandNew = () => {
     limit: 10,
     order: [
       ['year', 'DESC'],
+      ['id', 'ASC'],
     ],
   });
 };
@@ -69,6 +70,7 @@ const getHotPrices = () => {
     limit: 10,
     order: [
       [sequelize.literal('"fullPrice" - "price"'), 'DESC'],
+      ['id', 'ASC'],
     ],
   });
 };
@@ -76,7 +78,10 @@ const getHotPrices = () => {
 const getRecommended = () => {
   return Product.findAll({
     limit: 10,
-    order: sequelize.random(),
+    order: [
+      sequelize.random(),
+      ['id', 'ASC'],
+    ],
   });
 };
 
