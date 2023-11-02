@@ -86,7 +86,7 @@ const getHotPrices = () => {
   return Product.findAll({
     limit: 10,
     order: [
-      sequelize.literal('"fullPrice" - "price"'), 'DESC',
+      sequelize.literal('"fullPrice" - "price" DESC'),
       ['id', 'ASC'],
     ],
   });
