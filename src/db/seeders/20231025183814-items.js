@@ -1,5 +1,32 @@
 'use strict';
 
+const colors = [
+  'black',
+  'blue',
+  'coral',
+  'gold',
+  'graphite',
+  'green',
+  'midnight',
+  'midnightgreen',
+  'pink',
+  'purple',
+  'red',
+  'rosegold',
+  'sierrablue',
+  'silver',
+  'skyblue',
+  'spaceblack',
+  'spacegray',
+  'starlight',
+  'white',
+  'yellow',
+];
+
+function normalize(str) {
+  return str.replace(/[ -]/, '');
+}
+
 const phones = require('../../../data/phones.json');
 const tablets = require('../../../data/tablets.json');
 const accessories = require('../../../data/accessories.json');
@@ -8,6 +35,15 @@ const items = phones
   .concat(tablets, accessories)
   .map((item) => {
     item.description = JSON.stringify(item.description);
+
+    if (!colors.includes(item.color)) {
+      const id = item.id;
+      const idx = id.lastIndexOf('-');
+
+      item.color = normalize(item.color);
+      item.colorsAvailable = item.colorsAvailable.map(c => normalize(c));
+      item.id = id.substring(0, idx) + id.substring(idx + 1);
+    }
 
     return item;
   });
